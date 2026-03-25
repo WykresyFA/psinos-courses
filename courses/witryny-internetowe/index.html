@@ -1,1 +1,172 @@
-<h1>Pracuje nad tym!</h1>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsiN0s Programming Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #0f172a;
+            transition: 0.3s;
+            min-height: 100vh;
+        }
+
+        body.dark {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        /* Nawigacja */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        body.dark nav { border-color: #334155; }
+
+        .nav-left { display: flex; align-items: center; }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+
+        .nav-link {
+            text-decoration: none;
+            color: #5865f2;
+            font-weight: 700;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav-link:hover { opacity: 0.7; }
+
+        .home-link {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            display: flex;
+            padding: 8px;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+        .toggle-btn:hover { background: rgba(88, 101, 242, 0.1); }
+
+        /* Header */
+        header { padding: 60px 8% 40px; }
+        header h1 { font-size: 42px; font-weight: 900; margin-bottom: 10px; letter-spacing: -1px; }
+        header p { color: #4b5563; font-size: 18px; }
+        body.dark header p { color: #94a3b8; }
+
+        /* Lista Lekcji */
+        .content-area { padding: 0 8% 100px; max-width: 1100px; }
+        .section-title { font-size: 24px; font-weight: 800; margin-bottom: 25px; }
+
+        .lesson-list {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        body.dark .lesson-list { background: #1e293b; border-color: #334155; }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        body.dark .lesson-item { border-bottom-color: #334155; }
+        .lesson-item:last-child { border-bottom: none; }
+
+        .lesson-item:hover { background: #f1f5f9; }
+        body.dark .lesson-item:hover { background: #26334d; }
+
+        .lesson-icon {
+            width: 44px; height: 44px;
+            background: rgba(88, 101, 242, 0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 20px;
+            color: #5865f2;
+            flex-shrink: 0;
+        }
+
+        .lesson-info { flex-grow: 1; }
+        .lesson-info h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .lesson-info p { font-size: 13px; color: #64748b; }
+        body.dark .lesson-info p { color: #94a3b8; }
+
+        .arrow { color: #94a3b8; font-size: 18px; font-weight: bold; }
+
+        @media (max-width: 700px) {
+            header h1 { font-size: 32px; }
+            .content-area { padding: 0 5% 50px; }
+            nav { padding: 15px 5%; }
+        }
+    </style>
+</head>
+<body id="b">
+
+    <nav>
+        <div class="nav-left">
+            <a href="../index.html" class="nav-link">❮ All Courses</a>
+        </div>
+        <div class="nav-right">
+            <a href="../../index.html" class="home-link">Home</a>
+            <button class="toggle-btn" onclick="t()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Witryny Internetowe</h1>
+        <p>Kurs tworzenia witryn internetowych.</p>
+    </header>
+
+    <div class="content-area">
+        <h2 class="section-title">Let's explore the course!</h2>
+
+        <div class="lesson-list">
+            
+            <a href="l1/index.html" class="lesson-item">
+                <div class="lesson-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <div class="lesson-info">
+                    <h3>Lekcja 1: Witaj w Świecie Stron Internetowych!</h3>
+                    <p>September 5, 2025</p>
+                </div>
+                <div class="arrow">❯</div>
+            </a>
+            </div>
+    </div>
+
+    <script>
+        // Funkcja zmiany motywu
+        function t() {
+            const d = document.getElementById('b').classList.toggle('dark');
+            localStorage.setItem('d', d);
+        }
+        // Sprawdzanie zapisanego motywu przy starcie
+        if (localStorage.getItem('d') === 'true') document.getElementById('b').classList.add('dark');
+    </script>
+</body>
+</html>
