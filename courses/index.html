@@ -3,168 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses - psin0s</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Courses - PsiN0s</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #f8f9fa;
-            --text-dark: #111827;
-            --text-muted: #6b7280;
-            --primary: #2563eb;
-            --card-bg: #ffffff;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-dark);
-            margin: 0;
-            padding-bottom: 5rem;
+            background: #f8f9fa;
+            color: #0f172a;
+            transition: 0.3s;
+            min-height: 100vh;
         }
 
-        /* Navbar (taki sam jak na głównej dla spójności) */
+        body.dark {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 10%;
-            background: white;
+            padding: 20px 8%;
             border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
+        body.dark nav { border-color: #334155; }
 
-        .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: black; }
-        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-link { text-decoration: none; color: inherit; font-weight: 600; font-size: 15px; }
 
-        /* Header sekcji kursów */
-        .courses-header {
-            text-align: center;
-            padding: 4rem 10% 2rem;
+        /* Nagłówek na środku */
+        .header-sec { padding: 80px 8% 20px; text-align: center; }
+        .header-sec h1 { font-size: 50px; font-weight: 900; letter-spacing: -2px; margin-bottom: 12px; }
+        .header-sec p { color: #4b5563; font-size: 18px; margin-bottom: 30px; }
+        body.dark .header-sec p { color: #94a3b8; }
+
+        /* Stylowe przyciski widoku (Ikony) */
+        .controls { 
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            margin-bottom: 50px; 
         }
-
-        .courses-header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+        
+        .view-btn {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #64748b;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            transition: 0.2s;
         }
+        body.dark .view-btn { background: #1e293b; border-color: #334155; color: #94a3b8; }
+        
+        .view-btn:hover { color: #5865f2; border-color: #5865f2; }
+        .view-btn.active { background: #5865f2; color: white !important; border-color: #5865f2; }
 
-        .courses-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
+        /* Grid / Lista */
+        .grid { display: grid; gap: 25px; padding: 0 8% 100px; max-width: 1400px; margin: 0 auto; transition: 0.3s; }
+        
+        .grid.view-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+        .grid.view-list { grid-template-columns: 1fr; max-width: 900px; }
 
-        .courses-header span {
-            display: block;
-            font-style: italic;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            color: #9ca3af;
-        }
-
-        /* Siatka kursów */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 10%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Styl kafelka */
-        .course-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            transition: transform 0.2s, box-shadow 0.2s;
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 35px;
             text-decoration: none;
             color: inherit;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #f1f5f9;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        body.dark .card { background: #1e293b; border-color: #334155; }
 
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
+        .view-grid .card { flex-direction: column; align-items: flex-start; }
+        .view-list .card { flex-direction: row; align-items: center; justify-content: space-between; padding: 20px 30px; }
+
+        .card:hover { transform: translateY(-8px); border-color: #5865f2; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
         .icon-box {
-            background: #4f46e5; /* Fioletowo-niebieski jak na screenie */
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+            width: 52px; height: 52px;
+            background: rgba(88, 101, 242, 0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: #5865f2;
+            margin-bottom: 25px;
         }
+        .view-list .icon-box { margin-bottom: 0; margin-right: 20px; width: 44px; height: 44px; }
 
-        .icon-box svg {
-            width: 28px;
-            fill: white;
-        }
+        .card h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .card .cat { font-size: 13px; color: #5865f2; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
 
-        .course-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
+        .explore { font-weight: 700; color: #5865f2; font-size: 15px; margin-top: 30px; display: flex; align-items: center; gap: 8px; }
+        .view-list .explore { margin-top: 0; }
 
-        .category {
-            color: var(--primary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .explore-link {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        @media (max-width: 768px) {
-            .courses-grid { padding: 2rem 5%; }
-            .courses-header h1 { font-size: 2rem; }
+        @media (max-width: 700px) {
+            .header-sec h1 { font-size: 36px; }
+            .grid { padding: 0 5%; }
+            .view-list .card { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
-<body>
+<body id="b">
 
     <nav>
-        <a href="/" class="logo">psin0s</a>
-        <div class="nav-links">
-            <span style="font-size: 0.9rem; font-weight: 500;">Courses</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <span style="font-weight:900; font-size:20px; letter-spacing:-0.5px;">PsiN0s</span>
+        <div class="nav-right">
+            <a href="../index.html" class="nav-link">Home</a>
+            <button onclick="t()" class="view-btn" style="border:none; background:none;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
         </div>
     </nav>
 
-    <div class="courses-header">
+    <div class="header-sec">
         <h1>Programming Courses</h1>
-        <p>Find your course and let's start learning!</p>
-        <span>"Browse all available programming courses below."</span>
+        <p>Znajdź swój kurs i zacznij naukę!</p>
+
+        <div class="controls">
+            <button class="view-btn active" id="gridBtn" onclick="setView('grid')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </button>
+            <button class="view-btn" id="listBtn" onclick="setView('list')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            </button>
+        </div>
     </div>
 
-    <div class="courses-grid">
-        
-        <a href="/courses/witryny-internetowe/1tp-e" class="course-card">
-            <div class="icon-box">
-                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.89 9L12 4.57 20.11 9 12 13.43 3.89 9z"/></svg>
+    <div class="grid view-grid" id="cont">
+        <a href="witryny-internetowe/index.html" class="card">
+            <div>
+                <div class="icon-box">
+                    <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <p class="cat">Programming Fundamentals</p>
+                <h3>Witryny Internetowe</h3>
             </div>
-            <h3>Witryny Internetowe</h3>
-            <div class="category">Programming Fundamentals</div>
-            <div class="explore-link">Explore Course →</div>
+            <div class="explore">Explore Course ➔</div>
         </a>
     </div>
 
+    <script>
+        function setView(v) {
+            const c = document.getElementById('cont');
+            const g = document.getElementById('gridBtn');
+            const l = document.getElementById('listBtn');
+            if (v === 'grid') {
+                c.className = 'grid view-grid';
+                g.classList.add('active');
+                l.classList.remove('active');
+            } else {
+                c.className = 'grid view-list';
+                l.classList.add('active');
+                g.classList.remove('active');
+            }
+        }
+
+        function t() {
+            const d = document.getElementById('b').classList.toggle('dark');
+            localStorage.setItem('d', d);
+        }
+        if (localStorage.getItem('d') === 'true') document.getElementById('b').classList.add('dark');
+    </script>
 </body>
 </html>
